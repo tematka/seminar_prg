@@ -39,6 +39,35 @@ namespace Calculator
 
             //Tento komentar smaz a misto nej zacni psat svuj prdacky kod.
 
+            int a, b, result;
+            char operace;
+            result = 0;
+
+            Console.WriteLine("NApiš číslo a");
+            a = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("NApiš číslo a");
+            b = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Vyber p(+), r(-), k(*), d(/)");
+            operace = Convert.ToChar(Console.ReadLine());
+            
+            if(operace == 'p')
+            {
+                result = a + b;
+            }
+            if(operace == 'm')
+            {
+                result = a - b;
+            }
+            if (operace == 'k')
+            {
+                result = a * b;
+            }
+            if (operace == 'd')
+            {
+                result = a / b;
+            }
+
+            Console.WriteLine(result);
             Console.ReadKey(); //Toto nech jako posledni radek, aby se program neukoncil ihned, ale cekal na stisk klavesy od uzivatele.
         }
     }
