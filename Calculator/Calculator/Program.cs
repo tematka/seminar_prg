@@ -13,6 +13,11 @@ namespace Calculator
 {
     internal class Program
     {
+        static float soucet(float a, float b)
+        {
+            float vysledek = a + b;
+            return vysledek;
+        }
         static void Main(string[] args)
         {
             /*
@@ -37,38 +42,56 @@ namespace Calculator
              * 3) Umozni uzivateli zadavat i desetinna cisla, tedy prekopej kalkulacku tak, aby umela pracovat s floaty
              */
 
-            //Tento komentar smaz a misto nej zacni psat svuj prdacky kod.
-
-            int a, b, result;
-            char operace;
+             float a, b, result;
+            string operace;
             result = 0;
-
+            /*
             Console.WriteLine("NApiš číslo a");
             a = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("NApiš číslo a");
+            Console.WriteLine("NApiš číslo b");
             b = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Vyber p(+), r(-), k(*), d(/)");
+            Console.WriteLine("Vyber +, -, *, /");
             operace = Convert.ToChar(Console.ReadLine());
             
-            if(operace == 'p')
+            if(operace == '+')
             {
                 result = a + b;
             }
-            if(operace == 'm')
+            if(operace == '-')
             {
                 result = a - b;
             }
-            if (operace == 'k')
+            if (operace == '*')
             {
                 result = a * b;
             }
-            if (operace == 'd')
+            if (operace == '/')
             {
                 result = a / b;
             }
 
-            Console.WriteLine(result);
+            Console.WriteLine(result);*/
+
+            Console.WriteLine("Vyber +, -, *, /, l (logaritmus), m (mocnina)");
+            operace = Console.ReadLine();
+
+            switch (operace)
+            {
+                case "+":
+                    Console.WriteLine("Napiš číslo a, stiskni enter a poté napiš číslo b. Výpočet bude vypadat jako a + b.");
+                    bool succesA = float.TryParse(Console.ReadLine(), out a);
+                    bool succesB = float.TryParse(Console.ReadLine(), out b);
+                    result = soucet(a, b);
+                    break;
+                case "-":
+                    Console.WriteLine("Napiš číslo a, stiskni enter a poté napiš číslo b. Výpočet bude vypadat jako a - b.");
+                    bool succesA = float.TryParse(Console.ReadLine(), out a);
+                    bool succesB = float.TryParse(Console.ReadLine(), out b);
+                    result = soucet(a, b);
+                    break;
+            }
+
             Console.ReadKey(); //Toto nech jako posledni radek, aby se program neukoncil ihned, ale cekal na stisk klavesy od uzivatele.
-        }
+        }   
     }
 }
