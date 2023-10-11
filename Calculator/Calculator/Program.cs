@@ -13,11 +13,59 @@ namespace Calculator
 {
     internal class Program
     {
-        static float soucet(float a, float b)
+        static double soucet(double a, double b)
         {
-            float vysledek = a + b;
+            double vysledek = a + b;
             return vysledek;
         }
+        static double rozdil(double a, double b)
+        {
+            double vysledek = a - b;
+            return vysledek;
+        }
+        static double soucin(double a, double b)
+        {
+            double vysledek = a * b;
+            return vysledek;
+        }
+        static double podil(double a, double b)
+        {
+            double vysledek = a / b;
+            return vysledek;
+        }
+        static double mocnina(double a, double b)
+        {
+            double vysledek = Math.Pow(a, b);
+            return vysledek;
+        }
+        static int modulo(int c)
+        {
+            int vysledek = c % 2;
+            return vysledek;
+        }
+        static int vysledekDeleni(int c)
+        {
+            int vysledek;
+            if (c % 2 == 0)
+            {
+                vysledek = c / 2;
+            }
+            else
+            {
+                vysledek = (c - 1) / 2;
+            }
+            return vysledek;
+        }
+        static int faktorial(int c)
+        {
+            if(c ==  1)
+            {
+                return 1;
+            }
+            int vysledek = c * faktorial(c - 1);
+            return vysledek;
+        }
+
         static void Main(string[] args)
         {
             /*
@@ -42,55 +90,124 @@ namespace Calculator
              * 3) Umozni uzivateli zadavat i desetinna cisla, tedy prekopej kalkulacku tak, aby umela pracovat s floaty
              */
 
-             float a, b, result;
-            string operace;
+            int c, zbytek;
+            double a, b, result;
+            bool successA, successB, successC;
+            string operace, prevod;
             result = 0;
-            /*
-            Console.WriteLine("NApiš číslo a");
-            a = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("NApiš číslo b");
-            b = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Vyber +, -, *, /");
-            operace = Convert.ToChar(Console.ReadLine());
-            
-            if(operace == '+')
-            {
-                result = a + b;
-            }
-            if(operace == '-')
-            {
-                result = a - b;
-            }
-            if (operace == '*')
-            {
-                result = a * b;
-            }
-            if (operace == '/')
-            {
-                result = a / b;
-            }
+            successA = false;
+            successB = false;
+            successC = false;
+            a = 0;
+            b = 0;
+            c = 0;
+            prevod = "";
 
-            Console.WriteLine(result);*/
-
-            Console.WriteLine("Vyber +, -, *, /, l (logaritmus), m (mocnina)");
+            Console.WriteLine("Vyber +, -, *, /, m (mocnina), !(faktoriál), d (převod do dvojkové soustavy)");
             operace = Console.ReadLine();
 
             switch (operace)
             {
                 case "+":
-                    Console.WriteLine("Napiš číslo a, stiskni enter a poté napiš číslo b. Výpočet bude vypadat jako a + b.");
-                    bool succesA = float.TryParse(Console.ReadLine(), out a);
-                    bool succesB = float.TryParse(Console.ReadLine(), out b);
+                    Console.WriteLine("Zadej čísla a, b. Výpočet bude vypadat jako a + b.");
+                    while (successA == false)
+                    {
+                        Console.WriteLine("Číslu a zatím nebyla přiřazená žádná číselná hodnota.Napiš číslo a.");
+                        successA = double.TryParse(Console.ReadLine(), out a);
+                    }
+                    while (successB == false)
+                    {
+                        Console.WriteLine("Číslu b zatím nebyla přiřazená žádná číselná hodnota.Napiš číslo b.");
+                        successB = double.TryParse(Console.ReadLine(), out b);
+                    }
                     result = soucet(a, b);
                     break;
                 case "-":
-                    Console.WriteLine("Napiš číslo a, stiskni enter a poté napiš číslo b. Výpočet bude vypadat jako a - b.");
-                    bool succesA = float.TryParse(Console.ReadLine(), out a);
-                    bool succesB = float.TryParse(Console.ReadLine(), out b);
-                    result = soucet(a, b);
+                    Console.WriteLine("Zadej čísla a, b. Výpočet bude vypadat jako a - b.");
+                    while (successA == false)
+                    {
+                        Console.WriteLine("Číslu a zatím nebyla přiřazená žádná číselná hodnota.Napiš číslo a.");
+                        successA = double.TryParse(Console.ReadLine(), out a);
+                    }
+                    while (successB == false)
+                    {
+                        Console.WriteLine("Číslu b zatím nebyla přiřazená žádná číselná hodnota.Napiš číslo b.");
+                        successB = double.TryParse(Console.ReadLine(), out b);
+                    }
+                    result = rozdil(a, b);
+                    break;
+                case "*":
+                    Console.WriteLine("Zadej čísla a, b. Výpočet bude vypadat jako a * b.");
+                    while (successA == false)
+                    {
+                        Console.WriteLine("Číslu a zatím nebyla přiřazená žádná číselná hodnota.Napiš číslo a.");
+                        successA = double.TryParse(Console.ReadLine(), out a);
+                    }
+                    while (successB == false)
+                    {
+                        Console.WriteLine("Číslu b zatím nebyla přiřazená žádná číselná hodnota.Napiš číslo b.");
+                        successB = double.TryParse(Console.ReadLine(), out b);
+                    }
+                    result = soucin(a, b);
+                    break;
+                case "/":
+                    Console.WriteLine("Zadej čísla a, b. Výpočet bude vypadat jako a / b.");
+                    while (successA == false)
+                    {
+                        Console.WriteLine("Číslu a zatím nebyla přiřazená žádná číselná hodnota.Napiš číslo a.");
+                        successA = double.TryParse(Console.ReadLine(), out a);
+                    }
+                    while (successB == false)
+                    {
+                        Console.WriteLine("Číslu b zatím nebyla přiřazená žádná číselná hodnota.Napiš číslo b.");
+                        successB = double.TryParse(Console.ReadLine(), out b);
+                    }
+                    result = podil(a, b);
+                    break;
+                case "m":
+                    Console.WriteLine("Zadej čísla a, b. Výpočet bude vypadat jako a na b.");
+                    while (successA == false)
+                    {
+                        Console.WriteLine("Číslu a zatím nebyla přiřazená žádná číselná hodnota.Napiš číslo a.");
+                        successA = double.TryParse(Console.ReadLine(), out a);
+                    }
+                    while (successB == false)
+                    {
+                        Console.WriteLine("Číslu b zatím nebyla přiřazená žádná číselná hodnota.Napiš číslo b.");
+                        successB = double.TryParse(Console.ReadLine(), out b);
+                    }
+                    result = mocnina(a, b);
+                    break;
+                case "!":
+                    while (successC == false)
+                    {
+                        Console.WriteLine("Zatím nebylo zadané žádné číslo k výpočtu faktoriálu. Zadej přirozené číslo:");
+                        successC = int.TryParse(Console.ReadLine(), out c);
+                    }
+                    result = faktorial(c); 
+                    break;
+                case "d":
+                    while (successC == false)
+                    {
+                        Console.WriteLine("Zatím nebylo zadané žádné číslo k převodu do dvojkové soustavy. Zadej přirozené číslo:");
+                        successC = int.TryParse(Console.ReadLine(), out c);
+                    }
+                    while(c > 0)
+                    {
+                        zbytek = modulo(c);
+                        prevod += zbytek.ToString();
+                        c = vysledekDeleni(c);
+                    }
                     break;
             }
-
+            if (operace == "d")
+            {
+                Console.WriteLine("Cislo ve dvojkové soustavě(POZOR, čti pozpátku) je: " + prevod);
+            }
+            else
+            {
+                Console.WriteLine("Výsledek je " + result.ToString());
+            }
             Console.ReadKey(); //Toto nech jako posledni radek, aby se program neukoncil ihned, ale cekal na stisk klavesy od uzivatele.
         }   
     }
